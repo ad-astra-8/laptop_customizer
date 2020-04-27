@@ -30,6 +30,8 @@ export default function Summary(props) {
 
     return (
         <div>
+                    <section className="main__summary">
+
             {summary}
             {/* <Summary selected={props.selected}/> */}
             <Cart selected={props.selected} />
@@ -37,6 +39,8 @@ export default function Summary(props) {
             <Total total={total} USCurrencyFormat={USCurrencyFormat} />
 
 
+        
+        </section>
         </div>
     )
 }

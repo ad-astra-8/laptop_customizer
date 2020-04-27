@@ -3,8 +3,14 @@ import React, { Component } from 'react';
 // Normalizes string as a slug - a string that is safe to use
 // in both URLs and html attributes
 import slugify from 'slugify';
-
 import './App.css';
+import Header from './components/Header';
+import SubHeader from './components/SubHeader';
+import FeatureItem from './components/FeatureItem';
+// import Total from './components/Total';
+import Cart from './components/Cart';
+// import Summary from './components/Summary';
+
 
 // This object will allow us to
 // easily convert numbers into US dollar values
@@ -47,21 +53,25 @@ class App extends Component {
     const features = Object.keys(this.props.features).map((feature, idx) => {
       const featureHash = feature + '-' + idx;
       const options = this.props.features[feature].map(item => {
-        const itemHash = slugify(JSON.stringify(item));
+        // console.log(item.name);
+        const itemHash = slugify(JSON.stringify(item.name));   
+        const checked = item.name === this.state.selected[feature].name;
         return (
-          <div key={itemHash} className="feature__item">
-            <input
-              type="radio"
-              id={itemHash}
-              className="feature__option"
-              name={slugify(feature)}
-              checked={item.name === this.state.selected[feature].name}
-              onChange={e => this.updateFeature(feature, item)}
-            />
-            <label htmlFor={itemHash} className="feature__label">
-              {item.name} ({USCurrencyFormat.format(item.cost)})
-            </label>
-          </div>
+          <FeatureItem itemHash={itemHash} feature={feature} item={item} checked={checked}
+          handleUpdate={(feature, newValue) => this.updateFeature(feature, newValue)}/>
+          // <div key={itemHash} className="feature__item">
+          //   <input
+          //     type="radio"
+          //     id={itemHash}
+          //     className="feature__option"
+          //     name={slugify(feature)}
+          //     checked={item.name === this.state.selected[feature].name}
+          //     onChange={e => this.updateFeature(feature, item)}
+          //   />
+          //   <label htmlFor={itemHash} className="feature__label">
+          //     {item.name} ({USCurrencyFormat.format(item.cost)})
+          //   </label>
+          // </div>
         );
       });
 
@@ -75,20 +85,21 @@ class App extends Component {
       );
     });
 
-    const summary = Object.keys(this.state.selected).map((feature, idx) => {
-      const featureHash = feature + '-' + idx;
-      const selectedOption = this.state.selected[feature];
+    // const summary = Object.keys(this.state.selected).map((feature, idx) => {
+    //   const featureHash = feature + '-' + idx;
+    //   const selectedOption = this.state.selected[feature];
+    //   console.log(this.state.selected[feature].name);
 
-      return (
-        <div className="summary__option" key={featureHash}>
-          <div className="summary__option__label">{feature} </div>
-          <div className="summary__option__value">{selectedOption.name}</div>
-          <div className="summary__option__cost">
-            {USCurrencyFormat.format(selectedOption.cost)}
-          </div>
-        </div>
-      );
-    });
+    //   return (
+    //     <div className="summary__option" key={featureHash}>
+    //       <div className="summary__option__label">{feature} </div>
+    //       <div className="summary__option__value">{selectedOption.name}</div>
+    //       <div className="summary__option__cost">
+    //         {USCurrencyFormat.format(selectedOption.cost)}
+    //       </div>
+    //     </div>
+    //   );
+    // });
 
     const total = Object.keys(this.state.selected).reduce(
       (acc, curr) => acc + this.state.selected[curr].cost,
@@ -97,24 +108,31 @@ class App extends Component {
 
     return (
       <div className="App">
-        <header>
-          <h1>ELF Computing | Laptops</h1>
-        </header>
+        <Header />
         <main>
           <form className="main__form">
-            <h2>Customize your laptop</h2>
+            {/* <h2>Customize your laptop</h2> */}
+          {SubHeader('Customize your laptop')}
             {features}
           </form>
-          <section className="main__summary">
-            <h2>Your cart</h2>
-            {summary}
-            <div className="summary__total">
+          {/* <section className="main__summary"> */}
+            {/* <h2>Your cart</h2> */}
+            {/* {SubHeader('Your cart')} */}
+            {/* {summary} */}
+              <Cart  total={total}
+             USCurrencyFormat={USCurrencyFormat} selected={this.state.selected}/>
+             {/* <Summary summary={summary}/> */}
+             {/* <Summary selected={this.state.selected}/> */}
+            {/* <Total total={total}
+            USCurrencyFormat={USCurrencyFormat}/>  */}
+
+            {/* <div className="summary__total">
               <div className="summary__total__label">Total</div>
               <div className="summary__total__value">
                 {USCurrencyFormat.format(total)}
               </div>
-            </div>
-          </section>
+            </div> */}
+          {/* </section> */}
         </main>
       </div>
     );

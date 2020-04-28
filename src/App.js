@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 // Normalizes string as a slug - a string that is safe to use
 // in both URLs and html attributes
 import slugify from 'slugify';
@@ -7,9 +6,7 @@ import './App.css';
 import Header from './components/Header';
 import SubHeader from './components/SubHeader';
 import FeatureItem from './components/FeatureItem';
-// import Total from './components/Total';
 import Cart from './components/Cart';
-// import Summary from './components/Summary';
 
 
 // This object will allow us to
@@ -39,7 +36,7 @@ class App extends Component {
         cost: 1500
       }
     }
-  };
+  }
 
   updateFeature = (feature, newValue) => {
     const selected = Object.assign({}, this.state.selected);
@@ -52,13 +49,13 @@ class App extends Component {
   render() {
     const features = Object.keys(this.props.features).map((feature, idx) => {
       const featureHash = feature + '-' + idx;
-      const options = this.props.features[feature].map(item => {
+      const options = this.props.features[feature].map((item, idx) => {
         // console.log(item.name);
-        const itemHash = slugify(JSON.stringify(item.name));   
+        const itemHash = slugify(JSON.stringify(idx));   
         const checked = item.name === this.state.selected[feature].name;
         return (
-          <FeatureItem itemHash={itemHash} feature={feature} item={item} checked={checked}
-          handleUpdate={(feature, newValue) => this.updateFeature(feature, newValue)}/>
+          <FeatureItem key={itemHash} itemHash={itemHash} feature={feature} item={item} checked={checked}
+          handleUpdate={this.updateFeature}/>
           // <div key={itemHash} className="feature__item">
           //   <input
           //     type="radio"
@@ -111,28 +108,11 @@ class App extends Component {
         <Header />
         <main>
           <form className="main__form">
-            {/* <h2>Customize your laptop</h2> */}
           {SubHeader('Customize your laptop')}
             {features}
           </form>
-          {/* <section className="main__summary"> */}
-            {/* <h2>Your cart</h2> */}
-            {/* {SubHeader('Your cart')} */}
-            {/* {summary} */}
-              <Cart  total={total}
+              <Cart total={total}
              USCurrencyFormat={USCurrencyFormat} selected={this.state.selected}/>
-             {/* <Summary summary={summary}/> */}
-             {/* <Summary selected={this.state.selected}/> */}
-            {/* <Total total={total}
-            USCurrencyFormat={USCurrencyFormat}/>  */}
-
-            {/* <div className="summary__total">
-              <div className="summary__total__label">Total</div>
-              <div className="summary__total__value">
-                {USCurrencyFormat.format(total)}
-              </div>
-            </div> */}
-          {/* </section> */}
         </main>
       </div>
     );

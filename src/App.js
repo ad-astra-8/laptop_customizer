@@ -51,7 +51,7 @@ class App extends Component {
       const featureHash = feature + '-' + idx;
       const options = this.props.features[feature].map((item, idx) => {
         // console.log(item.name);
-        const itemHash = slugify(JSON.stringify(idx));   
+        const itemHash = slugify(JSON.stringify(item));   
         const checked = item.name === this.state.selected[feature].name;
         return (
           <FeatureItem key={itemHash} itemHash={itemHash} feature={feature} item={item} checked={checked}

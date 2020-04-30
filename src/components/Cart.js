@@ -1,7 +1,6 @@
 import React from 'react';
 import Total from './Total';
 import Summary from './Summary';
-import './cart.css';
 
 
 function Cart(props) {

@@ -2,8 +2,8 @@ import React from 'react';
 
 
 
-export default function SubHeader(title) {
+export default function SubHeader() {
     return (
-    <h2>{title}</h2>
+    <h2>Customize your laptop</h2>
     )
 }

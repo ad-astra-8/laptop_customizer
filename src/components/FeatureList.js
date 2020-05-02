@@ -25,9 +25,9 @@ function FeatureList(props) {
             return (
                 <div className="feature" key={key}>
                     <legend className="feature__name">
-                        <h3>{key}</h3>
+                        {key}
                     </legend>
-                    <ul className="feature__list">
+                    <ul>
                         {options}
                     </ul>
                 </div>

@@ -52,6 +52,11 @@ main {
   margin-top: 0.8rem;
 }
 
+ul {
+  padding-left: 0;
+  list-style: none;
+}
+
 .feature__name {
   font-size: inherit;
   line-height: inherit;
@@ -65,7 +70,7 @@ main {
 /* Hide radios from sighted users,
 while keeping them available to the keyboard */
 .feature__option {
-  /*! position: absolute !important; */
+  /* ! position: absolute !important; */
   /*! clip: rect(1px 1px 1px 1px); */ /* IE6, IE7 */
   /*! clip: rect(1px, 1px, 1px, 1px); */
   padding: 0 !important;
@@ -84,11 +89,16 @@ while keeping them available to the keyboard */
 
 .feature__label:hover {
   border-color: #888;
+  cursor: pointer;
 }
 
-.feature__option:checked + .feature__label {
+/* .feature__option:checked + .feature__label {
+  border: 0.2rem solid #0070c9;
+} */
+.feature__option:checked {
   border: 0.2rem solid #0070c9;
 }
+
 
 .feature__option:focus + .feature__label {
   box-shadow: 0 0 0 0.1rem #fff, 0 0 0 0.3rem #83c0fd;

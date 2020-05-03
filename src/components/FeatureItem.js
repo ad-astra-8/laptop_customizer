@@ -1,10 +1,9 @@
-  
+
 import React from 'react'
 
 export default function FeatureItem(props) {
 
     return (
-
         <div className="feature__item">
             <input
                 type="radio"
@@ -19,6 +18,17 @@ export default function FeatureItem(props) {
                 ({new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(props.item.cost)})
             </label>
         </div>
+            
+
+            //this is former code i came up with 
+            //  <li className="feature__label">
+            //     <div className={props.featureClass}
+            //         onClick={e => props.handleUpdate(props.feature, props.item)}>
+            //         {props.item.name}
+            //            ({new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
+            //             .format(props.item.cost)})
+            // </div>
+            // </li> 
 
     )
 

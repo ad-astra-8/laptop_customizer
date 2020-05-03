@@ -25,11 +25,11 @@ function FeatureList(props) {
             return (
                 <div className="feature" key={key}>
                     <legend className="feature__name">
-                        {key}
+                        <h3>{key}</h3>
                     </legend>
-                    <ul>
-                        {options}
-                    </ul>
+                    {/*<ul className="feature__list">*/}
+                    {options}
+                    {/* </ul> */}
                 </div>
             )
         });

@@ -2,7 +2,6 @@
 import React from 'react'
 
 export default function FeatureItem(props) {
-    console.log(props.feature)
 
     return (
         <div className="feature__item">

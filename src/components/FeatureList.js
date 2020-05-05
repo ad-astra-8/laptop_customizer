@@ -9,7 +9,6 @@ function FeatureList(props) {
 
                 const selectedClass = item.name === props.selected[key].name ? 'feature__selected' : '';
                 const featureClass = 'feature__option ' + selectedClass;
-                console.log(item.name);
                 return (
 
 

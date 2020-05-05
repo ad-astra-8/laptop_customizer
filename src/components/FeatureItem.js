@@ -2,34 +2,25 @@
 import React from 'react'
 
 export default function FeatureItem(props) {
+    console.log(props.feature)
 
     return (
         <div className="feature__item">
             <input
+                id={props.item.name}
                 type="radio"
-                id={props.key}
                 name={props.feature}
                 className={props.featureClass}
-                checked={props.item.name}
-                onClick={e => props.handleUpdate(props.feature, props.item)}
+                checked={props.featureClass.includes('feature__selected') ? true : false}
+                onChange={e => props.handleUpdate(props.feature, props.item)}
             />
-            <label htmlFor={props.key} className="feature__label">
+
+            <label htmlFor={props.item.name} className="feature__label"  >
                 {props.item.name}
                 ({new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(props.item.cost)})
+
             </label>
         </div>
-            
-
-            //this is former code i came up with 
-            //  <li className="feature__label">
-            //     <div className={props.featureClass}
-            //         onClick={e => props.handleUpdate(props.feature, props.item)}>
-            //         {props.item.name}
-            //            ({new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
-            //             .format(props.item.cost)})
-            // </div>
-            // </li> 
-
     )
 
 }
